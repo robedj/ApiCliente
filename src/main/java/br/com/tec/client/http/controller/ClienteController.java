@@ -54,6 +54,7 @@ public class ClienteController {
         clienteService.buscaPorId(id)
                 .map(clienteBase -> {
                     modelMapper.map(cliente, clienteBase);
+                    clienteService.salvar(clienteBase);
                     return Void.TYPE;
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente nao Encontrado"));
         }
